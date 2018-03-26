@@ -1,0 +1,683 @@
+{
+    "class_name": "Model",
+    "keras_version": "2.0.2",
+    "config": {
+        "layers": [
+            {
+                "class_name": "InputLayer",
+                "inbound_nodes": [],
+                "config": {
+                    "dtype": "float32",
+                    "batch_input_shape": [
+                        null,
+                        5778
+                    ],
+                    "name": "main_input",
+                    "sparse": false
+                },
+                "name": "main_input"
+            },
+            {
+                "class_name": "Dense",
+                "inbound_nodes": [
+                    [
+                        [
+                            "main_input",
+                            0,
+                            0,
+                            {}
+                        ]
+                    ]
+                ],
+                "config": {
+                    "kernel_initializer": {
+                        "class_name": "VarianceScaling",
+                        "config": {
+                            "distribution": "uniform",
+                            "scale": 1.0,
+                            "seed": null,
+                            "mode": "fan_avg"
+                        }
+                    },
+                    "name": "dense_1",
+                    "kernel_constraint": null,
+                    "bias_regularizer": null,
+                    "bias_constraint": null,
+                    "activation": "relu",
+                    "trainable": true,
+                    "kernel_regularizer": null,
+                    "bias_initializer": {
+                        "class_name": "Zeros",
+                        "config": {}
+                    },
+                    "units": 5120,
+                    "use_bias": true,
+                    "activity_regularizer": null
+                },
+                "name": "dense_1"
+            },
+            {
+                "class_name": "BatchNormalization",
+                "inbound_nodes": [
+                    [
+                        [
+                            "dense_1",
+                            0,
+                            0,
+                            {}
+                        ]
+                    ]
+                ],
+                "config": {
+                    "gamma_initializer": {
+                        "class_name": "Ones",
+                        "config": {}
+                    },
+                    "moving_mean_initializer": {
+                        "class_name": "Zeros",
+                        "config": {}
+                    },
+                    "name": "batch_normalization_1",
+                    "epsilon": 0.001,
+                    "trainable": true,
+                    "center": true,
+                    "moving_variance_initializer": {
+                        "class_name": "Ones",
+                        "config": {}
+                    },
+                    "beta_initializer": {
+                        "class_name": "Zeros",
+                        "config": {}
+                    },
+                    "scale": true,
+                    "gamma_regularizer": null,
+                    "gamma_constraint": null,
+                    "beta_constraint": null,
+                    "beta_regularizer": null,
+                    "momentum": 0.99,
+                    "axis": -1
+                },
+                "name": "batch_normalization_1"
+            },
+            {
+                "class_name": "Dropout",
+                "inbound_nodes": [
+                    [
+                        [
+                            "batch_normalization_1",
+                            0,
+                            0,
+                            {}
+                        ]
+                    ]
+                ],
+                "config": {
+                    "rate": 0.2,
+                    "trainable": true,
+                    "name": "dropout_1"
+                },
+                "name": "dropout_1"
+            },
+            {
+                "class_name": "Dense",
+                "inbound_nodes": [
+                    [
+                        [
+                            "dropout_1",
+                            0,
+                            0,
+                            {}
+                        ]
+                    ]
+                ],
+                "config": {
+                    "kernel_initializer": {
+                        "class_name": "VarianceScaling",
+                        "config": {
+                            "distribution": "uniform",
+                            "scale": 1.0,
+                            "seed": null,
+                            "mode": "fan_avg"
+                        }
+                    },
+                    "name": "dense_2",
+                    "kernel_constraint": null,
+                    "bias_regularizer": null,
+                    "bias_constraint": null,
+                    "activation": "relu",
+                    "trainable": true,
+                    "kernel_regularizer": null,
+                    "bias_initializer": {
+                        "class_name": "Zeros",
+                        "config": {}
+                    },
+                    "units": 4096,
+                    "use_bias": true,
+                    "activity_regularizer": null
+                },
+                "name": "dense_2"
+            },
+            {
+                "class_name": "BatchNormalization",
+                "inbound_nodes": [
+                    [
+                        [
+                            "dense_2",
+                            0,
+                            0,
+                            {}
+                        ]
+                    ]
+                ],
+                "config": {
+                    "gamma_initializer": {
+                        "class_name": "Ones",
+                        "config": {}
+                    },
+                    "moving_mean_initializer": {
+                        "class_name": "Zeros",
+                        "config": {}
+                    },
+                    "name": "batch_normalization_2",
+                    "epsilon": 0.001,
+                    "trainable": true,
+                    "center": true,
+                    "moving_variance_initializer": {
+                        "class_name": "Ones",
+                        "config": {}
+                    },
+                    "beta_initializer": {
+                        "class_name": "Zeros",
+                        "config": {}
+                    },
+                    "scale": true,
+                    "gamma_regularizer": null,
+                    "gamma_constraint": null,
+                    "beta_constraint": null,
+                    "beta_regularizer": null,
+                    "momentum": 0.99,
+                    "axis": -1
+                },
+                "name": "batch_normalization_2"
+            },
+            {
+                "class_name": "Dropout",
+                "inbound_nodes": [
+                    [
+                        [
+                            "batch_normalization_2",
+                            0,
+                            0,
+                            {}
+                        ]
+                    ]
+                ],
+                "config": {
+                    "rate": 0.2,
+                    "trainable": true,
+                    "name": "dropout_2"
+                },
+                "name": "dropout_2"
+            },
+            {
+                "class_name": "Dense",
+                "inbound_nodes": [
+                    [
+                        [
+                            "dropout_2",
+                            0,
+                            0,
+                            {}
+                        ]
+                    ]
+                ],
+                "config": {
+                    "kernel_initializer": {
+                        "class_name": "VarianceScaling",
+                        "config": {
+                            "distribution": "uniform",
+                            "scale": 1.0,
+                            "seed": null,
+                            "mode": "fan_avg"
+                        }
+                    },
+                    "name": "dense_3",
+                    "kernel_constraint": null,
+                    "bias_regularizer": null,
+                    "bias_constraint": null,
+                    "activation": "relu",
+                    "trainable": true,
+                    "kernel_regularizer": null,
+                    "bias_initializer": {
+                        "class_name": "Zeros",
+                        "config": {}
+                    },
+                    "units": 3072,
+                    "use_bias": true,
+                    "activity_regularizer": null
+                },
+                "name": "dense_3"
+            },
+            {
+                "class_name": "BatchNormalization",
+                "inbound_nodes": [
+                    [
+                        [
+                            "dense_3",
+                            0,
+                            0,
+                            {}
+                        ]
+                    ]
+                ],
+                "config": {
+                    "gamma_initializer": {
+                        "class_name": "Ones",
+                        "config": {}
+                    },
+                    "moving_mean_initializer": {
+                        "class_name": "Zeros",
+                        "config": {}
+                    },
+                    "name": "batch_normalization_3",
+                    "epsilon": 0.001,
+                    "trainable": true,
+                    "center": true,
+                    "moving_variance_initializer": {
+                        "class_name": "Ones",
+                        "config": {}
+                    },
+                    "beta_initializer": {
+                        "class_name": "Zeros",
+                        "config": {}
+                    },
+                    "scale": true,
+                    "gamma_regularizer": null,
+                    "gamma_constraint": null,
+                    "beta_constraint": null,
+                    "beta_regularizer": null,
+                    "momentum": 0.99,
+                    "axis": -1
+                },
+                "name": "batch_normalization_3"
+            },
+            {
+                "class_name": "Dropout",
+                "inbound_nodes": [
+                    [
+                        [
+                            "batch_normalization_3",
+                            0,
+                            0,
+                            {}
+                        ]
+                    ]
+                ],
+                "config": {
+                    "rate": 0.2,
+                    "trainable": true,
+                    "name": "dropout_3"
+                },
+                "name": "dropout_3"
+            },
+            {
+                "class_name": "Dense",
+                "inbound_nodes": [
+                    [
+                        [
+                            "dropout_3",
+                            0,
+                            0,
+                            {}
+                        ]
+                    ]
+                ],
+                "config": {
+                    "kernel_initializer": {
+                        "class_name": "VarianceScaling",
+                        "config": {
+                            "distribution": "uniform",
+                            "scale": 1.0,
+                            "seed": null,
+                            "mode": "fan_avg"
+                        }
+                    },
+                    "name": "dense_4",
+                    "kernel_constraint": null,
+                    "bias_regularizer": null,
+                    "bias_constraint": null,
+                    "activation": "relu",
+                    "trainable": true,
+                    "kernel_regularizer": null,
+                    "bias_initializer": {
+                        "class_name": "Zeros",
+                        "config": {}
+                    },
+                    "units": 2048,
+                    "use_bias": true,
+                    "activity_regularizer": null
+                },
+                "name": "dense_4"
+            },
+            {
+                "class_name": "BatchNormalization",
+                "inbound_nodes": [
+                    [
+                        [
+                            "dense_4",
+                            0,
+                            0,
+                            {}
+                        ]
+                    ]
+                ],
+                "config": {
+                    "gamma_initializer": {
+                        "class_name": "Ones",
+                        "config": {}
+                    },
+                    "moving_mean_initializer": {
+                        "class_name": "Zeros",
+                        "config": {}
+                    },
+                    "name": "batch_normalization_4",
+                    "epsilon": 0.001,
+                    "trainable": true,
+                    "center": true,
+                    "moving_variance_initializer": {
+                        "class_name": "Ones",
+                        "config": {}
+                    },
+                    "beta_initializer": {
+                        "class_name": "Zeros",
+                        "config": {}
+                    },
+                    "scale": true,
+                    "gamma_regularizer": null,
+                    "gamma_constraint": null,
+                    "beta_constraint": null,
+                    "beta_regularizer": null,
+                    "momentum": 0.99,
+                    "axis": -1
+                },
+                "name": "batch_normalization_4"
+            },
+            {
+                "class_name": "Dropout",
+                "inbound_nodes": [
+                    [
+                        [
+                            "batch_normalization_4",
+                            0,
+                            0,
+                            {}
+                        ]
+                    ]
+                ],
+                "config": {
+                    "rate": 0.2,
+                    "trainable": true,
+                    "name": "dropout_4"
+                },
+                "name": "dropout_4"
+            },
+            {
+                "class_name": "Dense",
+                "inbound_nodes": [
+                    [
+                        [
+                            "dropout_4",
+                            0,
+                            0,
+                            {}
+                        ]
+                    ]
+                ],
+                "config": {
+                    "kernel_initializer": {
+                        "class_name": "VarianceScaling",
+                        "config": {
+                            "distribution": "uniform",
+                            "scale": 1.0,
+                            "seed": null,
+                            "mode": "fan_avg"
+                        }
+                    },
+                    "name": "dense_5",
+                    "kernel_constraint": null,
+                    "bias_regularizer": null,
+                    "bias_constraint": null,
+                    "activation": "relu",
+                    "trainable": true,
+                    "kernel_regularizer": null,
+                    "bias_initializer": {
+                        "class_name": "Zeros",
+                        "config": {}
+                    },
+                    "units": 3072,
+                    "use_bias": true,
+                    "activity_regularizer": null
+                },
+                "name": "dense_5"
+            },
+            {
+                "class_name": "BatchNormalization",
+                "inbound_nodes": [
+                    [
+                        [
+                            "dense_5",
+                            0,
+                            0,
+                            {}
+                        ]
+                    ]
+                ],
+                "config": {
+                    "gamma_initializer": {
+                        "class_name": "Ones",
+                        "config": {}
+                    },
+                    "moving_mean_initializer": {
+                        "class_name": "Zeros",
+                        "config": {}
+                    },
+                    "name": "batch_normalization_5",
+                    "epsilon": 0.001,
+                    "trainable": true,
+                    "center": true,
+                    "moving_variance_initializer": {
+                        "class_name": "Ones",
+                        "config": {}
+                    },
+                    "beta_initializer": {
+                        "class_name": "Zeros",
+                        "config": {}
+                    },
+                    "scale": true,
+                    "gamma_regularizer": null,
+                    "gamma_constraint": null,
+                    "beta_constraint": null,
+                    "beta_regularizer": null,
+                    "momentum": 0.99,
+                    "axis": -1
+                },
+                "name": "batch_normalization_5"
+            },
+            {
+                "class_name": "Dropout",
+                "inbound_nodes": [
+                    [
+                        [
+                            "batch_normalization_5",
+                            0,
+                            0,
+                            {}
+                        ]
+                    ]
+                ],
+                "config": {
+                    "rate": 0.2,
+                    "trainable": true,
+                    "name": "dropout_5"
+                },
+                "name": "dropout_5"
+            },
+            {
+                "class_name": "Dense",
+                "inbound_nodes": [
+                    [
+                        [
+                            "dropout_5",
+                            0,
+                            0,
+                            {}
+                        ]
+                    ]
+                ],
+                "config": {
+                    "kernel_initializer": {
+                        "class_name": "VarianceScaling",
+                        "config": {
+                            "distribution": "uniform",
+                            "scale": 1.0,
+                            "seed": null,
+                            "mode": "fan_avg"
+                        }
+                    },
+                    "name": "dense_6",
+                    "kernel_constraint": null,
+                    "bias_regularizer": null,
+                    "bias_constraint": null,
+                    "activation": "relu",
+                    "trainable": true,
+                    "kernel_regularizer": null,
+                    "bias_initializer": {
+                        "class_name": "Zeros",
+                        "config": {}
+                    },
+                    "units": 4096,
+                    "use_bias": true,
+                    "activity_regularizer": null
+                },
+                "name": "dense_6"
+            },
+            {
+                "class_name": "BatchNormalization",
+                "inbound_nodes": [
+                    [
+                        [
+                            "dense_6",
+                            0,
+                            0,
+                            {}
+                        ]
+                    ]
+                ],
+                "config": {
+                    "gamma_initializer": {
+                        "class_name": "Ones",
+                        "config": {}
+                    },
+                    "moving_mean_initializer": {
+                        "class_name": "Zeros",
+                        "config": {}
+                    },
+                    "name": "batch_normalization_6",
+                    "epsilon": 0.001,
+                    "trainable": true,
+                    "center": true,
+                    "moving_variance_initializer": {
+                        "class_name": "Ones",
+                        "config": {}
+                    },
+                    "beta_initializer": {
+                        "class_name": "Zeros",
+                        "config": {}
+                    },
+                    "scale": true,
+                    "gamma_regularizer": null,
+                    "gamma_constraint": null,
+                    "beta_constraint": null,
+                    "beta_regularizer": null,
+                    "momentum": 0.99,
+                    "axis": -1
+                },
+                "name": "batch_normalization_6"
+            },
+            {
+                "class_name": "Dropout",
+                "inbound_nodes": [
+                    [
+                        [
+                            "batch_normalization_6",
+                            0,
+                            0,
+                            {}
+                        ]
+                    ]
+                ],
+                "config": {
+                    "rate": 0.2,
+                    "trainable": true,
+                    "name": "dropout_6"
+                },
+                "name": "dropout_6"
+            },
+            {
+                "class_name": "Dense",
+                "inbound_nodes": [
+                    [
+                        [
+                            "dropout_6",
+                            0,
+                            0,
+                            {}
+                        ]
+                    ]
+                ],
+                "config": {
+                    "kernel_initializer": {
+                        "class_name": "VarianceScaling",
+                        "config": {
+                            "distribution": "uniform",
+                            "scale": 1.0,
+                            "seed": null,
+                            "mode": "fan_avg"
+                        }
+                    },
+                    "name": "main_out",
+                    "kernel_constraint": null,
+                    "bias_regularizer": null,
+                    "bias_constraint": null,
+                    "activation": "sigmoid",
+                    "trainable": true,
+                    "kernel_regularizer": null,
+                    "bias_initializer": {
+                        "class_name": "Zeros",
+                        "config": {}
+                    },
+                    "units": 324,
+                    "use_bias": true,
+                    "activity_regularizer": null
+                },
+                "name": "main_out"
+            }
+        ],
+        "input_layers": [
+            [
+                "main_input",
+                0,
+                0
+            ]
+        ],
+        "name": "model_1",
+        "output_layers": [
+            [
+                "main_out",
+                0,
+                0
+            ]
+        ]
+    },
+    "backend": "tensorflow"
+}

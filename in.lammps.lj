@@ -1,0 +1,94 @@
+#########################################################################################
+#											#
+# Generate dynamics of Lennard-Jones system of 108 particles using Tensorflow DNN	#
+#											#
+# Lennard-Jones potential is for ficticious strongly-coupled Nobel element		#
+# in the liquid state at T=1000 K, rho = 5.314 g/cc (atomic mass = 100 g/mol)		#
+#											#
+# DNN potential corresponds approx to LJ potential of:					#
+# epsilon = 1 kcal/mol, sigma = 4.5 angstroms, cutoff is 2.5*sigma			#
+#											#
+# Initial state is fcc lattice melted over 100 ps					#
+# For equilibration: Noose-Hoover thermostat with NVT					#
+# For production: NVE dynamics / 1 fs timestep / output every 10 steps / 1e6 steps	#
+#											#
+# @2017, Jon Belof and Will Lowe 							#
+#											#
+#########################################################################################
+
+# set the thermodynamic conditions
+variable	temperature		equal	1000.	# in K
+
+# initial lattice parameter (sets the density)
+variable	lattice_parameter	equal	5.	# in angstroms
+
+# number of primitive cells in x, y, z
+variable	nx			equal	3
+variable	ny			equal	3
+variable	nz			equal	3
+
+# output frequency
+variable	traj_equil_freq		equal	1
+variable	traj_prod_freq		equal	1
+variable	thermo_freq		equal	1
+
+# "real" units: mass = g/mol, distance = angstroms, time = fs, energy = kcal/mol, pressure = atm
+units		real
+
+# fully periodic
+boundary	p p p
+atom_style	atomic
+atom_modify     sort 0 0.0
+
+# energy conserving timestep
+timestep	1.
+
+# set the initial lattice spacing and orientation
+# z aligned with 001
+lattice         fcc ${lattice_parameter} orient x 1 0 0 orient y 0 1 0 orient z 0 0 1
+
+# replicate the primitive cell
+region          box prism 0 ${nx} 0 ${ny} 0 ${nz} 0 0 0
+
+# populate the simulation box
+create_box      1 box
+create_atoms    1 box
+
+# mass = 100 g/mol
+mass 1 100.
+
+# neighbor list
+neighbor        2.0 bin
+neigh_modify	every 1 delay 10 check yes
+
+# output observables
+thermo_style	custom step time vol density temp press etotal ke pe
+thermo		${thermo_freq}
+thermo_modify	flush yes
+
+# write trajectory of equilibration
+dump		equil_dump all custom ${traj_equil_freq} lj.equil.lammpstrj x y z vx vy vz fx fy fz
+
+# thermo/barostat to our desired state
+velocity	all create ${temperature} 12345 dist gaussian
+velocity	all zero linear
+fix             dyn_equil all nvt temp ${temperature} ${temperature} 100.
+
+# set callback interface to retrieve forces from our trained DNN
+fix		dyn_DNN all external pf/callback 1 1
+
+# equilibrate
+run		100000
+
+# set NVE dynamics
+undump		equil_dump
+unfix		dyn_equil
+reset_timestep	0
+fix             dyn_prod all nve
+
+# write production trajectory
+dump		prod_dump all custom ${traj_prod_freq} lj.lammpstrj x y z vx vy vz fx fy fz
+
+# production dynamics
+run		1000000
+
