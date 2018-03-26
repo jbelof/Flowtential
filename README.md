@@ -37,8 +37,8 @@ to compile the main executable, lmpdnn.
 
 The example included here is that of an atomic system described by the well-known Lennard-Jones potential.  A Tensorflow DNN has been trained over configurations coming from this exact potential; convolutional NN using RLU (dropout = 0.2) and 6 layers (2048/1024/512/256/512/2048) with input vectors containing coordinates and output vectors holding the forces.  The lmpdnn driver invokes an instantiation of LAMMPS and then gets called back via the line
 
-\# set callback interface to retrieve forces from our trained DNN
-fix             dyn_DNN all external pf/callback 1 1
+\# set callback interface to retrieve forces from our trained DNN  
+fix             dyn_DNN all external pf/callback 1 1  
 
 from the input deck.  At this stage the coordinates get written to a file, the DNN gets invoked as a prediction step by way of Keras, and forces get written into a file.  The driver pulls the forces, copies them into the LAMMPS data structure and returns control back to LAMMPS.  This entire process happens each timestep and is incredibly slow.
 
