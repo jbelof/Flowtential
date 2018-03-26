@@ -2,7 +2,7 @@
 
 Numerical techniques for deep learning offer a route to the development of higher-fidelity (at the cost of complexity and computational expense) interatomic and intermolecular Hamiltonians.  This code base demonstrates a beta architecture for linking the molecular dynamic code LAMMPS with Google's deep neural network (DNN) library Tensorflow (by way of the python-based interface library Keras) in order to provide an interatomic potential through the force callback interface.  For further details, please see http://on-demand.gputechconf.com/gtc/2017/presentation/s7373-jon-belof-deep-neural-networkds-for-non-equilibrium-molecular.pdf
 
-For any of this to be possible, you need to train a DNN and include the Tensorflow JSON file that will be used in a prediction step to provide forces for the MD code.  That means you need to know what the hell you are doing or none of this will be useful!
+For any of this to be possible, you need to train a DNN and include the Tensorflow JSON and H5 files that will be used in a prediction step to provide forces for the MD code.  That means you need to know what the hell you are doing or none of this will be useful!
 
 Flowtential is heavily-based on the very nice [QUEST](http://github.com/lammps/lammps/tree/master/examples/COUPLE/lammps_quest) code that uses the LAMMPS callback interface to call a DFT code for interatomic forces.
 
